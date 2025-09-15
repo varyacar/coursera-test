@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script type="text/javascript">
+  window.addEventListener('scroll', function () {
+    const nav = document.querySelector('.nav');
+    if (window.scrollY > 0) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+</script>
+	<meta charset="utf-8">
+	<title>KOALEARN</title>
+	<link rel="stylesheet" href="kakaska_test.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;650&display=swap" rel="stylesheet">
+</head><div class="nav"> <nav></nav></div>
+<body>
+	<header class="header">
+		
+			<div class="triangle-container">	
+				<h1 class="triangle-text">KOALEARN</h1>
+				<p class="triangle-text2">Learn faster with <span class="Koalas">Koalas</span>!</p>
+				<div class="btns">
+				<button class="butns register">Get started</button>
+				<button class="butns transparent"> b.<span class="login">Log in</span>bl.</button>
+			</div>
+			</div>
+	</header>
+			<div class="base">Step into the world of Koalearn! Read engaging texts designed for learners from A2 to B2. Each story is crafted to  expand your vocabulary, improve reading skills, and make learning a joy. 
+        <div class="choice">Choose your favourite text and start your adventure with the Koalas!</div></div>
+</head>
+  <div class="carousel">
+    <div class="card center">B1</div>
+    <div class="card left">A2</div>
+    <div class="card right">B2</div>
+  </div>
+  <div class="block1">
+    <div class="main1">Levelled Texts (A2–B2):</div>
+Explore short, interesting texts carefully crafted for your level. From myths and history to everyday life and science, each text helps you improve reading, vocabulary, and grammar naturally. Every story is engaging and thought-provoking, so learning feels like an adventure.
+  </div>
+<div class="block2">
+  <div class="main2">Topic-Based Texts (A0–B2):</div>
+Dive into longer, topic-focused texts with wider vocabulary coverage. Each text includes a useful wordlist and exercises to help you understand and remember new words. Topics range from travel and food to culture and nature, making reading both fun and educational.
+</div>
+<div class="block3">
+  <div class="main3">Koala Dialogues & Mini-Stories:</div>
+    Follow cute koalas as they chat and explore small adventures. Dialogues are level-appropriate and introduce new expressions in context. Complete the text exercises to unlock extra challenges or mini-games with the koalas, making learning playful and memorable.
+</div>
+<div class="block4">
+  <div class="main4">Personalize Your Koala & Your Site:</div>
+    Make your learning space truly yours! After finishing a text, choose a theme to decorate your site — from pyramids for history texts to ocean waves for sea stories. Track progress, unlock achievements, and customize your koala’s home, creating a unique experience every step of the way.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    const cards = document.querySelectorAll(".card");
+let order = ["A2", "B1", "B2"];
+
+function update() {
+  cards.forEach(card => {
+    card.classList.remove("left", "center", "right");
+  });
+  cards.forEach(card => {
+    if (card.textContent === order[0]) card.classList.add("left");
+    if (card.textContent === order[1]) card.classList.add("center");
+    if (card.textContent === order[2]) card.classList.add("right");
+  });
+}
+
+// Клик по соседней карточке
+cards.forEach(card => {
+  card.addEventListener("click", () => {
+    if (card.classList.contains("left")) {
+      order.unshift(order.pop());
+      update();
+    } else if (card.classList.contains("right")) {
+      order.push(order.shift());
+      update();
+    }
+  });
+});
+
+// Свайп на телефонах
+let startX = 0;
+document.querySelector(".carousel").addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+document.querySelector(".carousel").addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+  let diff = startX - endX;
+  if (diff > 50) { // свайп влево
+    order.push(order.shift());
+    update();
+  } else if (diff < -50) { // свайп вправо
+    order.unshift(order.pop());
+    update();
+  }
+});
+
+update();
+  </script>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
